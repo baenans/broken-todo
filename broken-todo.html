@@ -56,6 +56,8 @@
         save: function () {
           const index = this.todoIndex;
           const value = this.todoValue;
+          if (!value)
+            return;
 
           if (!index) {
             this.push('todos', {
