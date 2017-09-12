@@ -50,21 +50,22 @@
             value: ''
           },
           todoIndex: {
-            type: Number
+            type: Number,
+            value: null  // default: null
           }
         },
         save: function () {
           const index = this.todoIndex;
           const value = this.todoValue;
 
-          if (!index) {
+          if (index === null) {  // comparing to null
             this.push('todos', {
               value,
               enabled: true
             });
           } else {
             const todo = this.todos[index];
-            this.set(`todos.${index}`, {
+            this.set(`todos.${index}`.value, 
               value,
               enabled: todo.enabled
             });
