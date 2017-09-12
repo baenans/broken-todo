@@ -64,11 +64,7 @@
               enabled: true
             });
           } else {
-            const todo = this.todos[index];
-            this.set(`todos.${index}`.value, 
-              value,
-              enabled: todo.enabled
-            });
+            this.set(`todos.${index}.value`,value);
           }
 
           this.clearTodoValue();
