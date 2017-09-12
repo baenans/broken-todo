@@ -95,8 +95,9 @@
           const index = +(target.parentElement.getAttribute('item-index'));
           const todo = this.todos[index];
           
-          if (!todo.enabled)  // disabled todos can't be eddited
+          if (!todo.enabled) {  // disabled todos can't be eddited
             return;
+          }
 
           this.todoIndex = index;
           this.todoValue = todo.value;
