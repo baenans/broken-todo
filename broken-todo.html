@@ -93,9 +93,13 @@
         edit: function (event) {
           const target = event.target;
           const index = +(target.parentElement.getAttribute('item-index'));
+          const todo = this.todos[index];
+          
+          if (!todo.enabled)  // disabled todos can't be eddited
+            return;
 
           this.todoIndex = index;
-          this.todoValue = this.todos[index].value;
+          this.todoValue = todo.value;
         },
         disabledClass: function (isEnabled) {
           return isEnabled ? "enabled" : "disabled";
