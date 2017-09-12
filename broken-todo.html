@@ -86,6 +86,9 @@
           const todo = this.get(`todos.${index}`);
 
           this.set(`todos.${index}.enabled`, !todo.enabled);
+          if (this.todoIndex === index) {
+            this.clearTodoValue();
+          }
         },
         edit: function (event) {
           const target = event.target;
