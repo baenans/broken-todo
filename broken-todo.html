@@ -50,32 +50,28 @@
             value: ''
           },
           todoIndex: {
-            type: Number
+            type: Number,
+            value: null  // default: null
           }
         },
         save: function () {
           const index = this.todoIndex;
           const value = this.todoValue;
 
-          if (!index) {
+          if (index === null) {  // comparing to null
             this.push('todos', {
               value,
               enabled: true
             });
           } else {
-            const todo = this.todos[index];
-            this.set(`todos.${index}`, {
-              value,
-              enabled: todo.enabled
-            });
+            this.set(`todos.${index}.value`,value);
           }
 
           this.clearTodoValue();
         },
         clearTodoValue: function () {
           this.set('todoIndex', null);
-          this.set('todoValue', null);
-          this.$.todoValue.value = '';
+          this.set('todoValue', "");
         },
         cancel: function () {
           this.$.todoValue.value = '';
