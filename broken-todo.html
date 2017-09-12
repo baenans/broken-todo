@@ -11,7 +11,7 @@
 
     <div>
       <input id="todoValue" value="{{todoValue::input}}">
-      <button on-click="cancel">Cancel</button>
+      <button on-click="cancel" disabled$="[[_cancelDisabled(todoValue)]]">Cancel</button>
       <button on-click="save">Save</button>
     </div>
 
@@ -114,6 +114,9 @@
         },
         hasDoneTodos: function(todos) {
           return todos.base.some((todo) => todo.enabled === false);
+        },
+        _cancelDisabled(todoValue) {
+          return todoValue === "";
         }
       });
     })();
