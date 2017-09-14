@@ -11,7 +11,7 @@
 
     <div>
       <input id="todoValue" value="{{todoValue::input}}">
-      <button on-click="cancel">Cancel</button>
+      <button on-click="cancel" disabled$="[[_cancelDisabled(todoValue)]]">Cancel</button>
       <button on-click="save">Save</button>
     </div>
 
@@ -56,6 +56,8 @@
         save: function () {
           const index = this.todoIndex;
           const value = this.todoValue;
+          if (!value)
+            return;
 
           if (!index) {
             this.push('todos', {
@@ -74,11 +76,10 @@
         },
         clearTodoValue: function () {
           this.set('todoIndex', null);
-          this.set('todoValue', null);
-          this.$.todoValue.value = '';
+          this.set('todoValue', '');
         },
         cancel: function () {
-          this.$.todoValue.value = '';
+          this.todoValue = '';
         },
         toggleEnabled: function (event) {
           const target = event.target;
@@ -112,6 +113,9 @@
         },
         hasDoneTodos: function(todos) {
           return todos.base.some((todo) => todo.enabled === false);
+        },
+        _cancelDisabled(todoValue) {
+          return (!todoValue);
         }
       });
     })();
